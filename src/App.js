@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SearchBar from './components/SearchBar';
+import CategoryIcons from './components/CategoryIcons';
+import MapView from './pages/MapView';
+import HotelList from './pages/HotelList';
+import './styles/App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={
+          <div className="app">
+            <div className="header">
+              <h1>FINE DINE</h1>
+            </div>
+            <div className="content">
+              <SearchBar />
+              <CategoryIcons />
+            </div>
+          </div>
+        } />
+        <Route path="/map/:hotelId" element={<MapView />} />
+        <Route path="/hotels/:location" element={<HotelList />} />
+      </Routes>
+    </Router>
   );
 }
 
